@@ -2,14 +2,19 @@ package br.com.brq.projetoandroidlista
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.com.brq.projetoandroidlista.model.Pessoa
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ItemClickListener {
 
     var recyclerView: RecyclerView? = null
+
     //lateinit var recyclerView: RecyclerView
-    lateinit var meuArrayDeAnimais: ArrayList<String>
+    lateinit var meuArrayDeAnimais: ArrayList<Pessoa>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,19 +24,26 @@ class MainActivity : AppCompatActivity() {
         carregarArray()
 
 
-        recyclerView?.adapter = AdapterRecyclerView(this, meuArrayDeAnimais)
+        AdapterRecyclerView(this, meuArrayDeAnimais, this).let {
+            recyclerView?.adapter = it
+        }
+        //recyclerView?.adapter = AdapterRecyclerView(this, meuArrayDeAnimais)
         recyclerView?.layoutManager = LinearLayoutManager(this)
     }
 
-    fun carregarElementos(){
+    fun carregarElementos() {
         recyclerView = findViewById(R.id.rv_produtos)
     }
 
-    fun carregarArray(){
+    fun carregarArray() {
         meuArrayDeAnimais = ArrayList()
         //Adicionando animais no array
-        meuArrayDeAnimais.add("Cachorro")
-        meuArrayDeAnimais.add("Gato")
-        meuArrayDeAnimais.add("Passarinho")
+        meuArrayDeAnimais.add(Pessoa("Carine", 22, R.drawable.ic_baseline_account_circle_24))
+
     }
+
+    override fun onClickItem(view: View?, index: Int) {
+        Toast.makeText(this, meuArrayDeAnimais[index].nome, Toast.LENGTH_SHORT).show()
+    }
+
 }

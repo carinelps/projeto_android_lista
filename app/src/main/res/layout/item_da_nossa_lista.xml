@@ -4,11 +4,32 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    
+
+    <ImageView
+        android:id="@+id/imageViewAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
     <TextView
         android:id="@+id/textView_titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Carine"/>
+        android:padding="16dp"
+        android:text="Carine" />
+
+    <TextView
+        android:id="@+id/textView_subtitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Carine" />
+
+    </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
